@@ -2,6 +2,11 @@ package es.urjc.etsii.grafo.HashCode.model;
 
 import es.urjc.etsii.grafo.solution.Solution;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashSet;
+
 public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstance> {
 
     /**
@@ -9,9 +14,15 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      *
      * @param ins
      */
+
+    private HashSet<String> ingredients;
+    private boolean update;
+    private double mark;
+
     public HashCodeSolution(HashCodeInstance ins) {
         super(ins);
-        // TODO Initialize data structures if necessary
+        ingredients = new HashSet<>();
+        update = true;
     }
 
     /**
@@ -21,10 +32,14 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      */
     public HashCodeSolution(HashCodeSolution s) {
         super(s);
-        // TODO Copy ALL solution data, we are cloning a solution
-        throw new UnsupportedOperationException("HashCodeSolution() in HashCode not implemented yet");
+        ingredients = new HashSet<>(s.getIngredients());
+        update = s.update;
     }
 
+    public void copy(HashCodeSolution s) {
+        ingredients = new HashSet<>(s.getIngredients());
+        update = s.update;
+    }
 
     @Override
     public HashCodeSolution cloneSolution() {
@@ -35,8 +50,7 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
 
     @Override
     protected boolean _isBetterThan(HashCodeSolution other) {
-        // TODO given two solutions, is the current solution STRICTLY better than the other?
-        throw new UnsupportedOperationException("isBetterThan() in HashCode not implemented yet");
+        return getScore()>other.getScore();
     }
 
     /**
@@ -49,11 +63,18 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      */
     @Override
     public double getScore() {
-        // TODO: Implement efficient score calculation.
-        // Can be as simple as a score property that gets updated when the solution changes
-        // Example: return this.score;
-        // Another ok start implementation can be: return recalculateScore();
-        throw new UnsupportedOperationException("getScore() in HashCode not implemented yet");
+        double res = 0;
+        for(int i=0; i<this.getInstance().C;i++){
+            boolean flag = true;
+            for(String in:this.getInstance().getIngredient_per_client().get(i)){
+                if(!ingredients.contains(in)) { flag=false; break; }
+            }
+            for(String in:this.getInstance().getIngredient_dislike_per_client().get(i)){
+                if(ingredients.contains(in)) { flag=false; break; }
+            }
+            if(flag) res++;
+        }
+        return mark = res;
     }
 
     /**
@@ -67,9 +88,17 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      */
     @Override
     public double recalculateScore() {
-        // TODO calculate solution score from scratch, without using caches
-        //  and without modifying the current solution. Careful with side effects.
-        throw new UnsupportedOperationException("recalculateScore() in HashCode not implemented yet");
+        update = true;
+        return mark=getScore();
+    }
+
+    @Override
+    public String toString() {
+        return "HashCodeSolution{" +
+                "ingredients=" + ingredients +
+                ", update=" + update +
+                ", mark=" + mark +
+                '}';
     }
 
     /**
@@ -78,11 +107,28 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      *
      * @return Small string representing the current solution (Example: id + score)
      */
-    @Override
-    public String toString() {
-        // TODO: When all fields are implemented use your IDE to autogenerate this method
-        //  using only the most important fields.
-        // This method will be called to print best solutions in console while solving.
-        throw new UnsupportedOperationException("toString() in HashCodeSolution not implemented yet");
+
+
+    public HashSet<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void printSolution(){
+        try{
+            FileWriter fw=new FileWriter("./solutions/"+this.getInstance().getName()+'_'+this.getScore());
+            BufferedWriter bw = new BufferedWriter(fw);
+            //System.out.print(ingredients.size());
+            bw.write(Integer.toString(ingredients.size()));
+            for(String ing:ingredients){
+                //System.out.print(" " + ing);
+                bw.write(" " + ing);
+            }
+            //System.out.println();
+            //System.out.println(this.getScore());
+            bw.close();
+            fw.close();
+        }catch(IOException e){
+            System.out.println("Error E/S: "+e);
+        }
     }
 }

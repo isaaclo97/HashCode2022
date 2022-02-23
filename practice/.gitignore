@@ -3,3 +3,6 @@ log.txt
 errors
 target
 HashCode.iml
+results/
+log.txt*
+solutions/

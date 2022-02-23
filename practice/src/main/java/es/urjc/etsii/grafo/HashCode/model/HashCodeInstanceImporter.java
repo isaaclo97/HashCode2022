@@ -14,7 +14,7 @@ public class HashCodeInstanceImporter extends InstanceImporter<HashCodeInstance>
         // TIP You may use a Scanner if you prefer it to a Buffered Reader:
         // Scanner sc = new Scanner(reader);
 
-        var instance = new HashCodeInstance(filename);
+        var instance = new HashCodeInstance(filename, reader);
 
         // IMPORTANT! Remember that instance data must be immutable from this point
         return instance;
