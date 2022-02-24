@@ -22,6 +22,7 @@ public class HCSolutionIO extends SolutionSerializer<HashCodeSolution, HashCodeI
         var assignments = solution.getAssignments();
         Map<Person, Integer> finishDate = new HashMap<>();
         int skipped = 0;
+        int score = 0;
         StringBuilder sb = new StringBuilder();
 
         // write size - skipped
@@ -47,6 +48,7 @@ public class HCSolutionIO extends SolutionSerializer<HashCodeSolution, HashCodeI
                 var person = e.getValue();
                 finishDate.put(person, startAt + project.getDuration());
             }
+            score += project.getScoreAt(startAt);
 
             boolean flag = true;
             sb.append(project.getName()).append("\n");
@@ -61,6 +63,7 @@ public class HCSolutionIO extends SolutionSerializer<HashCodeSolution, HashCodeI
             }
             sb.append("\n");
         }
+        System.out.printf("Instance %s, %s --> %s%n", solution.getInstance().getName(), solution.getScore(), score);
         bw.write(projects.size() - skipped);
         bw.write("\n");
         bw.write(sb.toString());
