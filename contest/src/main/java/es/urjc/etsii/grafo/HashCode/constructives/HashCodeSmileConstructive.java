@@ -41,6 +41,7 @@ public class HashCodeSmileConstructive extends Constructive<HashCodeSolution, Ha
         Map<Project, Map<Skill, Person>> assignments = new HashMap<>();
         projectFor: for (var project : projectOrder) {
             HashMap<String, Integer> maxSkill = new HashMap<>();
+            HashSet<Person> used = new HashSet<>();
             var projectAssignments = new HashMap<Skill, Person>();
             // Asignar personas primero.
             // Despues comprobar si existe algun maxskill para mentrizar.
@@ -60,6 +61,7 @@ public class HashCodeSmileConstructive extends Constructive<HashCodeSolution, Ha
                 // Lowest skill first
                 boolean assigned = false;
                 for (Person user : existingUsers) {
+                    if (used.contains(user))continue;
                     if (availableAt.getOrDefault(user.getName(), 0) < project.startBefore()) {
                         if (curlvl.get(user.getName()).getSkills().getOrDefault(skillReq.getName(), 0) == skillReq.getN() - 1 &&
                                 maxSkill.get(skillReq.getName()) >= skillReq.getN()) {
@@ -70,6 +72,7 @@ public class HashCodeSmileConstructive extends Constructive<HashCodeSolution, Ha
                                 maxSkill.putIfAbsent(s,integer);
                                 maxSkill.computeIfPresent(s,(s1, integer1) -> Math.max(integer1,integer));
                             });
+                            used.add(user);
                             break;
                         } else if (curlvl.get(user.getName()).getSkills().getOrDefault(skillReq.getName(), 0) >= skillReq.getN()) {
                             projectAssignments.put(skillReq, user);
@@ -79,6 +82,7 @@ public class HashCodeSmileConstructive extends Constructive<HashCodeSolution, Ha
                                 maxSkill.putIfAbsent(s,integer);
                                 maxSkill.computeIfPresent(s,(s1, integer1) -> Math.max(integer1,integer));
                             });
+                            used.add(user);
                             break;
                         }
                     }
