@@ -51,7 +51,7 @@ serializers:
   solution-hashcode:
     enabled: true
     folder: 'solutions'
-    format: '.txt'
+    format: "'.txt'"
 
   solution-json:
     # Enable default JSON serializer for solutions. Exports the best solution of each algorithm to JSON.

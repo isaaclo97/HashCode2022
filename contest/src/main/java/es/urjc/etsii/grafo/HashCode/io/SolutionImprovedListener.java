@@ -27,7 +27,7 @@ public class SolutionImprovedListener {
         var newBest = solution.getScore();
         log.info(String.format("New best: %s, Δ: %s", newBest, Math.abs(event.getOldScore() - newBest)));
 
-        String filename = solution.getInstance().getName() + "_" + System.currentTimeMillis() + ".txt";
+        String filename = solution.getInstance().getName() + "_" + solution.getScore() + "_" + System.currentTimeMillis() + ".txt";
         try (var bw = Files.newBufferedWriter(Path.of(FOLDER, filename))){
             solutionIO.export(bw, solution);
         } catch (IOException e) {

@@ -40,6 +40,7 @@ public class HashCodeListManager extends GRASPListManager<HashCodeListManager.Ha
         return buildInitialCandidateList(solution);
     }
 
+
     public static class HashCodeGRASPMove extends EagerMove<HashCodeSolution, HashCodeInstance> {
         public HashCodeGRASPMove(HashCodeSolution solution) {
             super(solution);

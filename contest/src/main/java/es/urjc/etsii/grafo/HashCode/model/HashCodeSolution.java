@@ -2,16 +2,17 @@ package es.urjc.etsii.grafo.HashCode.model;
 
 import es.urjc.etsii.grafo.solution.Solution;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashSet;
+
 public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstance> {
 
-    /**
-     * Initialize solution from instance
-     *
-     * @param ins
-     */
+
     public HashCodeSolution(HashCodeInstance ins) {
         super(ins);
-        // TODO Initialize data structures if necessary
+        // TODO initialize fields
     }
 
     /**
@@ -21,8 +22,8 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      */
     public HashCodeSolution(HashCodeSolution s) {
         super(s);
-        // TODO Copy ALL solution data, we are cloning a solution
-        throw new UnsupportedOperationException("HashCodeSolution() in HashCode not implemented yet");
+        // TODO copy fields
+
     }
 
 
@@ -35,8 +36,7 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
 
     @Override
     protected boolean _isBetterThan(HashCodeSolution other) {
-        // TODO given two solutions, is the current solution STRICTLY better than the other?
-        throw new UnsupportedOperationException("isBetterThan() in HashCode not implemented yet");
+        return getScore()>other.getScore();
     }
 
     /**
@@ -49,11 +49,9 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      */
     @Override
     public double getScore() {
-        // TODO: Implement efficient score calculation.
-        // Can be as simple as a score property that gets updated when the solution changes
-        // Example: return this.score;
-        // Another ok start implementation can be: return recalculateScore();
-        throw new UnsupportedOperationException("getScore() in HashCode not implemented yet");
+
+        // TODO bad, optimize
+        return recalculateScore();
     }
 
     /**
@@ -67,22 +65,13 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      */
     @Override
     public double recalculateScore() {
-        // TODO calculate solution score from scratch, without using caches
-        //  and without modifying the current solution. Careful with side effects.
-        throw new UnsupportedOperationException("recalculateScore() in HashCode not implemented yet");
+        // Implement full score calculation
+        throw new UnsupportedOperationException("HashCodeSolution recalculateScore() not implemented");
     }
 
-    /**
-     * Generate a string representation of this solution. Used when printing progress to console,
-     * show as minimal info as possible
-     *
-     * @return Small string representing the current solution (Example: id + score)
-     */
     @Override
     public String toString() {
-        // TODO: When all fields are implemented use your IDE to autogenerate this method
-        //  using only the most important fields.
-        // This method will be called to print best solutions in console while solving.
-        throw new UnsupportedOperationException("toString() in HashCodeSolution not implemented yet");
+        throw new UnsupportedOperationException("Generate me");
     }
+
 }

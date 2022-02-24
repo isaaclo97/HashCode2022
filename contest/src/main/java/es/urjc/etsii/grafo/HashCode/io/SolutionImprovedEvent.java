@@ -8,7 +8,7 @@ public class SolutionImprovedEvent extends MorkEvent {
     private final double oldScore;
 
     public SolutionImprovedEvent(HashCodeSolution solution, double oldScore) {
-        this.solution = solution;
+        this.solution = new HashCodeSolution(solution);
         this.oldScore = oldScore;
     }
 

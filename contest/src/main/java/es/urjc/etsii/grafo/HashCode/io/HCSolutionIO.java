@@ -14,7 +14,7 @@ public class HCSolutionIO extends SolutionSerializer<HashCodeSolution, HashCodeI
     }
 
     @Override
-    public void export(BufferedWriter writer, HashCodeSolution hashCodeSolution) throws IOException {
-
+    public void export(BufferedWriter bw, HashCodeSolution hashCodeSolution) throws IOException {
+        throw new UnsupportedOperationException("HCSolutionIO::export, Solution export not impleented yet");
     }
 }

@@ -7,4 +7,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "serializers.solution-hashcode")
 public class HCSolutionIOConfig extends AbstractSerializerConfig {
+
 }
