@@ -69,11 +69,6 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
     public double recalculateScore() {
         int score = 0;
         Map<Person, Integer> availableAt = new HashMap<>();
-        Map<String, Person> skillsPerPerson = new HashMap<>();
-        for(var person: getInstance().getPersons().values()){
-            skillsPerPerson.put(person.getName(), person.clone());
-        }
-
 
         for(var p: projectOrder){
             int startAt = -1;
@@ -84,9 +79,9 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
             assert startAt != -1;
 
 
-//            for(var person: this.assignments.get(p)){
-//                availableAt.put(person, startAt + p.getDuration());
-//            }
+            for(var person: this.assignments.get(p)){
+                availableAt.put(person, startAt + p.getDuration());
+            }
             score += p.getScoreAt(startAt);
         }
 
