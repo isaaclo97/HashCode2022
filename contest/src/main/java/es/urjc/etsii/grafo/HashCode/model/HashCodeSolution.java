@@ -97,4 +97,11 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
         throw new UnsupportedOperationException("Generate me");
     }
 
+    public List<Project> getProjectOrder() {
+        return projectOrder;
+    }
+
+    public Map<Project, Map<Skill, Person>> getAssignments() {
+        return assignments;
+    }
 }
