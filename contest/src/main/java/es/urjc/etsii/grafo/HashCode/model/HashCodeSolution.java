@@ -24,8 +24,10 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      */
     public HashCodeSolution(HashCodeSolution s) {
         super(s);
-        // TODO copy fields
-
+        this.projectOrder = new ArrayList<>(s.getProjectOrder());
+        for(var e: s.getAssignments().entrySet()){
+            this.assignments.put(e.getKey(), new HashMap<>(e.getValue()));
+        }
     }
 
 

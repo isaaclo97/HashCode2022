@@ -1,5 +1,6 @@
 package es.urjc.etsii.grafo.HashCode.constructives;
 
+import es.urjc.etsii.grafo.HashCode.GlobalBests;
 import es.urjc.etsii.grafo.HashCode.model.*;
 import es.urjc.etsii.grafo.solver.create.Constructive;
 import es.urjc.etsii.grafo.util.CollectionUtil;
@@ -58,6 +59,8 @@ public class HashCodeRandomConstructive extends Constructive<HashCodeSolution, H
         solution.setAssigments(assignments);
         solution.setProjectOrder(realProjectOrder);
         solution.updateLastModifiedTime();
+
+        GlobalBests.checkIfBetter(solution);
         return solution;
     }
 
