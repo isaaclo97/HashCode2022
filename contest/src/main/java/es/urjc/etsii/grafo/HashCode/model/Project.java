@@ -42,7 +42,7 @@ public class Project {
         if(day + duration < bestBefore){
             return score;
         } else {
-            return Math.max(0, score + (bestBefore - (day + duration + 1)));
+            return Math.max(0, score + (bestBefore - (day + duration)));
         }
     }
 

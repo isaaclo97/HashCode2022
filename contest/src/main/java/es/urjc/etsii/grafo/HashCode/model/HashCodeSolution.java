@@ -69,20 +69,20 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
     @Override
     public double recalculateScore() {
         int score = 0;
-        Map<Person, Integer> availableAt = new HashMap<>();
+        Map<Person, Integer> finishDate = new HashMap<>();
 
         for(var p: projectOrder){
             int startAt = -1;
             for (var person : this.assignments.get(p).values()) {
-                availableAt.putIfAbsent(person, 0);
-                startAt = Math.max(startAt, availableAt.get(person));
+                finishDate.putIfAbsent(person, -1);
+                startAt = Math.max(startAt, finishDate.get(person) + 1);
             }
             assert startAt != -1;
 
             for(var e: this.assignments.get(p).entrySet()){
                 var skill = e.getKey();
                 var person = e.getValue();
-                availableAt.put(person, startAt + p.getDuration());
+                finishDate.put(person, startAt + p.getDuration());
             }
 
             score += p.getScoreAt(startAt);
