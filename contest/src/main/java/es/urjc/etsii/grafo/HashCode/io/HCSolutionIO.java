@@ -64,7 +64,7 @@ public class HCSolutionIO extends SolutionSerializer<HashCodeSolution, HashCodeI
             sb.append("\n");
         }
         System.out.printf("Instance %s, %s --> %s%n", solution.getInstance().getName(), solution.getScore(), score);
-        bw.write(projects.size() - skipped);
+        bw.write(Integer.toString(projects.size() - skipped));
         bw.write("\n");
         bw.write(sb.toString());
     }
