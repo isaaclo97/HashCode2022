@@ -1,9 +1,7 @@
 package es.urjc.etsii.grafo.HashCode.model;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 public class Project {
     private final String name;
@@ -59,5 +57,10 @@ public class Project {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

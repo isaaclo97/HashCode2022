@@ -5,10 +5,7 @@ import es.urjc.etsii.grafo.solver.create.Constructive;
 import es.urjc.etsii.grafo.util.CollectionUtil;
 import es.urjc.etsii.grafo.util.random.RandomManager;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class HashCodeRandomConstructive extends Constructive<HashCodeSolution, HashCodeInstance> {
 
@@ -33,11 +30,13 @@ public class HashCodeRandomConstructive extends Constructive<HashCodeSolution, H
         for (var project : projectOrder) {
             var projectAssignments = new HashMap<Skill, Person>();
 
+            Set<Person> usedPeople = new HashSet<>();
+
             for(var skill: project.getSkills()){
                 var validUsers = new ArrayList<Person>();
                 for(var user: users){
                     int skillLevel = user.getSkills().getOrDefault(skill.getName(), 0);
-                    if(skillLevel >= skill.getN()){
+                    if(!usedPeople.contains(user) && skillLevel >= skill.getN()){
                         validUsers.add(user);
                     }
                 }
@@ -45,6 +44,7 @@ public class HashCodeRandomConstructive extends Constructive<HashCodeSolution, H
                     break;
                 }
                 var chosenUser = CollectionUtil.pickRandom(validUsers);
+                usedPeople.add(chosenUser);
                 projectAssignments.put(skill, chosenUser);
             }
             if(project.getSkills().size() == projectAssignments.size()){
