@@ -95,7 +95,7 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
 
     @Override
     public String toString() {
-        return String.format("Score: %s, data: %s", getScore(), this.projectOrder);
+        return String.format("Score: %s", getScore());
     }
 
     public void setAssigments(Map<Project, Map<Skill, Person>> assignments) {
