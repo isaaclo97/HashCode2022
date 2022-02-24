@@ -17,6 +17,9 @@ public class HashCodeRandomConstructive extends Constructive<HashCodeSolution, H
         var rnd = RandomManager.getRandom();
 
 
+//        var improvedEvent = new SolutionImprovedEvent(solution, 5);
+//        EventPublisher.getInstance().publishEvent(improvedEvent);
+
 
         throw new UnsupportedOperationException("HashCodeRandomConstructive::construct");
         //return solution;
