@@ -22,7 +22,7 @@ public class ConstructiveExperiment extends AbstractExperiment<HashCodeSolution,
     public List<Algorithm<HashCodeSolution, HashCodeInstance>> getAlgorithms() {
         var algorithms = new ArrayList<Algorithm<HashCodeSolution, HashCodeInstance>>();
 
-        algorithms.add(new SimpleAlgorithm<>(new HashCodeRandomConstructive(100), new LSSawps()));
+        algorithms.add(new SimpleAlgorithm<>(new HashCodeRandomConstructive(10000, new LSSawps())));
 
         return algorithms;
     }

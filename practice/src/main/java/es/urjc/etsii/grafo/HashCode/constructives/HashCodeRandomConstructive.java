@@ -1,5 +1,6 @@
 package es.urjc.etsii.grafo.HashCode.constructives;
 
+import es.urjc.etsii.grafo.HashCode.improve.LSSawps;
 import es.urjc.etsii.grafo.HashCode.model.HashCodeInstance;
 import es.urjc.etsii.grafo.HashCode.model.HashCodeSolution;
 import es.urjc.etsii.grafo.solver.create.Constructive;
@@ -12,8 +13,10 @@ import java.util.Random;
 public class HashCodeRandomConstructive extends Constructive<HashCodeSolution, HashCodeInstance> {
 
     private int iters;
-    public HashCodeRandomConstructive(int iters){
+    private LSSawps ls;
+    public HashCodeRandomConstructive(int iters, LSSawps ls){
         this.iters = iters;
+        this.ls = ls;
     }
     @Override
     public HashCodeSolution construct(HashCodeSolution solution) {
@@ -35,9 +38,11 @@ public class HashCodeRandomConstructive extends Constructive<HashCodeSolution, H
                 bestMark = mark;
                 System.out.println(solution.getInstance().getName() + " " + bestMark);
                 bestSolution.updateLastModifiedTime();
-                bestSolution.printSolution();
+                //bestSolution.printSolution();
             }
         }
+        bestSolution.printSolution();
+        ls.improve(bestSolution);
         return bestSolution;
     }
 }
