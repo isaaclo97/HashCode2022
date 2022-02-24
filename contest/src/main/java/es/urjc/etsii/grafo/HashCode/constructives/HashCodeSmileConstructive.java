@@ -28,8 +28,12 @@ public class HashCodeSmileConstructive extends Constructive<HashCodeSolution, Ha
 
         // Project order
         var projectOrder = new ArrayList<>(instance.getProjects().values());
+//        Collections.sort(projectOrder,(o1, o2) -> {
+//            return Integer.compare(o1.startBefore(),o2.startBefore());
+//        });
+       // CollectionUtil.shuffle(projectOrder);
         Collections.sort(projectOrder,(o1, o2) -> {
-            return Integer.compare(o1.startBefore(),o2.startBefore());
+            return Integer.compare(o1.getDuration(),o2.getDuration());
         });
         var realProjectOrder = new ArrayList<Project>();
 
