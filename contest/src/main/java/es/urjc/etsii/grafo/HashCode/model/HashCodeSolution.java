@@ -51,7 +51,6 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      */
     @Override
     public double getScore() {
-
         // TODO bad, optimize
         return recalculateScore();
     }
@@ -94,7 +93,22 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Generate me");
+        return String.format("Score: %s, data: %s", getScore(), this.projectOrder);
     }
 
+    public void setAssigments(Map<Project, Map<Skill, Person>> assignments) {
+        this.assignments = assignments;
+    }
+
+    public void setProjectOrder(ArrayList<Project> projectOrder) {
+        this.projectOrder = projectOrder;
+    }
+
+    public List<Project> getProjectOrder() {
+        return projectOrder;
+    }
+
+    public Map<Project, Map<Skill, Person>> getAssignments() {
+        return assignments;
+    }
 }

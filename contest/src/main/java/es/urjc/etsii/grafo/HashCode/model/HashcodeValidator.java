@@ -7,10 +7,10 @@ public class HashcodeValidator extends SolutionValidator<HashCodeSolution, HashC
 
     @Override
     public ValidationResult validate(HashCodeSolution hashCodeSolution) {
-        //return ValidationResult.ok();
+        return ValidationResult.ok();
 
         //return ValidationResult.fail("");
 
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
     }
 }
