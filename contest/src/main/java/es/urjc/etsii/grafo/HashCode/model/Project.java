@@ -2,6 +2,7 @@ package es.urjc.etsii.grafo.HashCode.model;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public class Project {
@@ -45,5 +46,18 @@ public class Project {
         } else {
             return Math.max(0, score + (bestBefore - (day + duration + 1)));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Project project = (Project) o;
+        return Objects.equals(name, project.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
