@@ -46,6 +46,13 @@ irace:
   shell: true
 
 serializers:
+
+  # Configuration for HCSolutionIO
+  solution-hashcode:
+    enabled: true
+    folder: 'solutions'
+    format: '.txt'
+
   solution-json:
     # Enable default JSON serializer for solutions. Exports the best solution of each algorithm to JSON.
     # If you want to export solutions to a custom format, extend SolutionSerializer,

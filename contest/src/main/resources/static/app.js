@@ -293,9 +293,8 @@ function onSolutionGenerated(event) {
     }
     current_chart_series[event.algorithmName].addPoint([event.iteration, event.score], redraw);
 
-    // TODO Specify how to draw or set data to our custom solution chart when a solution is generated.
-    //  Check if the generated solution improves best. Change to > if maximizing
-    if (isNaN(bestValue) || event.score < bestValue) {
+    // TODO: WARNING MAY NEED TO CHANGE TO < if minimizing
+    if (isNaN(bestValue) || event.score > bestValue) {
         bestValue = event.score;
         const newData = [];
         for (let i = 0; i < event.solution.solutionData.length; i++) {
