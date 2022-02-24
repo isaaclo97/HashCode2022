@@ -10,7 +10,7 @@ import java.util.*;
 public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstance> {
 
     List<Project> projectOrder = new ArrayList<>();
-    Map<Project, Map<String, Person>> assignments = new HashMap<>();
+    Map<Project, Map<Skill, Person>> assignments = new HashMap<>();
 
     public HashCodeSolution(HashCodeInstance ins) {
         super(ins);
@@ -78,10 +78,12 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
             }
             assert startAt != -1;
 
-
-            for(var person: this.assignments.get(p)){
+            for(var e: this.assignments.get(p).entrySet()){
+                var skill = e.getKey();
+                var person = e.getValue();
                 availableAt.put(person, startAt + p.getDuration());
             }
+
             score += p.getScoreAt(startAt);
         }
 
@@ -89,9 +91,6 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
         return score;
     }
 
-//    public boolean validateSkill(){
-//
-//    }
 
     @Override
     public String toString() {
