@@ -46,6 +46,10 @@ public class Project {
         }
     }
 
+    public int startBefore(){
+        return this.bestBefore-this.getDuration();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
