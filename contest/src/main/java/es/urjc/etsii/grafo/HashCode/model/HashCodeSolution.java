@@ -5,10 +5,12 @@ import es.urjc.etsii.grafo.solution.Solution;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.*;
 
 public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstance> {
 
+    List<Project> projectOrder = new ArrayList<>();
+    Map<Project, Map<String, Person>> assignments = new HashMap<>();
 
     public HashCodeSolution(HashCodeInstance ins) {
         super(ins);
@@ -65,9 +67,36 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      */
     @Override
     public double recalculateScore() {
-        // Implement full score calculation
-        throw new UnsupportedOperationException("HashCodeSolution recalculateScore() not implemented");
+        int score = 0;
+        Map<Person, Integer> availableAt = new HashMap<>();
+        Map<String, Person> skillsPerPerson = new HashMap<>();
+        for(var person: getInstance().getPersons().values()){
+            skillsPerPerson.put(person.getName(), person.clone());
+        }
+
+
+        for(var p: projectOrder){
+            int startAt = -1;
+            for (var person : this.assignments.get(p).values()) {
+                availableAt.putIfAbsent(person, 0);
+                startAt = Math.max(startAt, availableAt.get(person));
+            }
+            assert startAt != -1;
+
+
+//            for(var person: this.assignments.get(p)){
+//                availableAt.put(person, startAt + p.getDuration());
+//            }
+            score += p.getScoreAt(startAt);
+        }
+
+
+        return score;
     }
+
+//    public boolean validateSkill(){
+//
+//    }
 
     @Override
     public String toString() {
