@@ -64,7 +64,7 @@ public class HashCodeSmileConstructive extends Constructive<HashCodeSolution, Ha
                     if (used.contains(user))continue;
                     if (availableAt.getOrDefault(user.getName(), 0) < project.startBefore()) {
                         if (curlvl.get(user.getName()).getSkills().getOrDefault(skillReq.getName(), 0) == skillReq.getN() - 1 &&
-                                maxSkill.get(skillReq.getName()) >= skillReq.getN()) {
+                                maxSkill.getOrDefault(skillReq.getName(),0) >= skillReq.getN()) {
                             projectAssignments.put(skillReq, user);
                             fastStart = Math.max(fastStart,availableAt.getOrDefault(user.getName(), 0));
                             assigned = true;
