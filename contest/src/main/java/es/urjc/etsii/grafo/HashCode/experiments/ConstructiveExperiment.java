@@ -1,6 +1,8 @@
 package es.urjc.etsii.grafo.HashCode.experiments;
 
 import es.urjc.etsii.grafo.HashCode.constructives.HashCodeRandomConstructive;
+import es.urjc.etsii.grafo.HashCode.constructives.HashCodeSergioIsaacConstructive;
+import es.urjc.etsii.grafo.HashCode.constructives.HashCodeSmileConstructive;
 import es.urjc.etsii.grafo.HashCode.improve.XXLocalSearch;
 import es.urjc.etsii.grafo.HashCode.model.HashCodeInstance;
 import es.urjc.etsii.grafo.HashCode.model.HashCodeSolution;
@@ -21,7 +23,9 @@ public class ConstructiveExperiment extends AbstractExperiment<HashCodeSolution,
     @Override
     public List<Algorithm<HashCodeSolution, HashCodeInstance>> getAlgorithms() {
         var algorithms = new ArrayList<Algorithm<HashCodeSolution, HashCodeInstance>>();
-        algorithms.add(new SimpleAlgorithm<>(new HashCodeRandomConstructive()));
+        //algorithms.add(new SimpleAlgorithm<>(new HashCodeRandomConstructive(), new XXLocalSearch()));
+        algorithms.add(new SimpleAlgorithm<>(new HashCodeSmileConstructive(), new XXLocalSearch()));
+        //algorithms.add(new SimpleAlgorithm<>(new HashCodeSergioIsaacConstructive(), new XXLocalSearch()));
         return algorithms;
     }
 }

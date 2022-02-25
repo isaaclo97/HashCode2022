@@ -31,9 +31,9 @@ public class HashCodeSmileConstructive extends Constructive<HashCodeSolution, Ha
 //        Collections.sort(projectOrder,(o1, o2) -> {
 //            return Integer.compare(o1.startBefore(),o2.startBefore());
 //        });
-       // CollectionUtil.shuffle(projectOrder);
+        //CollectionUtil.shuffle(projectOrder);
         Collections.sort(projectOrder,(o1, o2) -> {
-            return Integer.compare(o1.getDuration(),o2.getDuration());
+            return -Integer.compare(o1.getDuration(),o2.getDuration());
         });
         var realProjectOrder = new ArrayList<Project>();
 

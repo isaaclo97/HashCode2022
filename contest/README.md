@@ -1,5 +1,5 @@
 # HashCode 2022 - Contest
-Heuristics solutions used to solve HashCode 2022 practice round
+Heuristics solutions used to solve HashCode 2022 contest round
 
 ## Project structure
 
@@ -20,32 +20,29 @@ TODO
 
 Inputs  | Score
 ------- | -------
-A       |  
-B       | 
-C       | 
-D       | 
-E       | 
-F		    | 
+A       |  30
+B       |  448047
+C       |  34285
+D       |  87143
+E       |  1640096
+F		|  243094
 
 
-#### Total: 
+#### Total: 2452695
 
-#### World: XXXX/XXXXX
-#### Spain: XX/XXX
+#### World: 1023/10200
+#### Spain: 22/224
 
 
 ## Results in extended Round
 
 Inputs  | Score
 ------- | -------
-A       | 
-B       | 
-C       |
-D       | 
-E       | 
-F		    |
+A       |  30
+B       |  718897
+C       |  42473
+D       |  127293
+E       |  1640096
+F	    |  413603
 
-#### Total: 
-
-#### World: XXX/XXXX
-#### Spain: XX/XXX
+#### Total: 2942392

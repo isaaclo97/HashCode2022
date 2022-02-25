@@ -41,7 +41,8 @@ public class HashCodeSergioIsaacConstructive extends Constructive<HashCodeSoluti
             int duration =  solution.getInstance().getProjects().get(project).getDuration();
             int score = solution.getInstance().getProjects().get(project).getScore();
             int skills = solution.getInstance().getProjects().get(project).getSkills().size();
-            double value = (duration+skills)*1.0/score;
+            int bestBefore = solution.getInstance().getProjects().get(project).getBestBefore();
+            double value = (duration*skills)*1.0/score;
             projectOrder.add(new Candidate(solution.getInstance().getProjects().get(project),value));
         }
         projectOrder.sort(Comparator.comparingDouble(Candidate::getValue));
@@ -83,7 +84,7 @@ public class HashCodeSergioIsaacConstructive extends Constructive<HashCodeSoluti
         solution.setAssigments(assignments);
         solution.setProjectOrder(realProjectOrder);
         solution.updateLastModifiedTime();
-        System.out.println(cnt);
+        //System.out.println(cnt);
         GlobalBests.checkIfBetter(solution);
         return solution;
     }

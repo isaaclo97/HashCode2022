@@ -3,3 +3,7 @@ log.txt
 errors
 target
 HashCode.iml
+realtime/
+solutions/
+results/
+*.gz

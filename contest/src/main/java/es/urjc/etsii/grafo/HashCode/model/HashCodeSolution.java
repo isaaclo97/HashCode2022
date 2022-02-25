@@ -68,6 +68,7 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
      */
     @Override
     public double recalculateScore() {
+        return recalculateScoreAux();/*
         int score = 0;
         Map<Person, Integer> finishDate = new HashMap<>();
 
@@ -89,6 +90,34 @@ public class HashCodeSolution extends Solution<HashCodeSolution, HashCodeInstanc
         }
 
 
+        return score;*/
+    }
+
+    public double recalculateScoreAux() {
+        int score = 0;
+        Map<Person, Integer> finishDate = new HashMap<>();
+
+        for(var project: projectOrder){
+
+            int startAt = -1;
+            for (var person : assignments.get(project).values()) {
+                finishDate.putIfAbsent(person, -1);
+                startAt = Math.max(startAt, finishDate.get(person) + 1);
+            }
+            assert startAt != -1;
+
+            int points = project.getScoreAt(startAt);
+            if(points == 0){
+                continue;
+            }
+
+            for(var e: assignments.get(project).entrySet()){
+                var skill = e.getKey();
+                var person = e.getValue();
+                finishDate.put(person, startAt + project.getDuration());
+            }
+            score += project.getScoreAt(startAt);
+        }
         return score;
     }
 

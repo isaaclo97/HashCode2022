@@ -25,7 +25,7 @@ public class HashCodeRandomConstructive extends Constructive<HashCodeSolution, H
         var realProjectOrder = new ArrayList<Project>();
 
         CollectionUtil.shuffle(projectOrder);
-
+        var remainingProjects = new ArrayList<Project>();
         // Assignments
         Map<Project, Map<Skill, Person>> assignments = new HashMap<>();
         for (var project : projectOrder) {
@@ -52,9 +52,35 @@ public class HashCodeRandomConstructive extends Constructive<HashCodeSolution, H
                 realProjectOrder.add(project);
                 assignments.put(project, projectAssignments);
             } else {
-                // discard
+                remainingProjects.add(project);
             }
         }
+
+        /*for (var project : remainingProjects) {
+            var projectAssignments = new HashMap<Skill, Person>();
+
+            Set<Person> usedPeople = new HashSet<>();
+
+            for(var skill: project.getSkills()){
+                var validUsers = new ArrayList<Person>();
+                for(var user: users){
+                    int skillLevel = user.getSkills().getOrDefault(skill.getName(), 0);
+                    if(!usedPeople.contains(user) && skillLevel >= skill.getN()){
+                        validUsers.add(user);
+                    }
+                }
+                if(validUsers.isEmpty()){
+                    break;
+                }
+                var chosenUser = CollectionUtil.pickRandom(validUsers);
+                usedPeople.add(chosenUser);
+                projectAssignments.put(skill, chosenUser);
+            }
+            if(project.getSkills().size() == projectAssignments.size()){
+                realProjectOrder.add(project);
+                assignments.put(project, projectAssignments);
+            }
+        }*/
 
         solution.setAssigments(assignments);
         solution.setProjectOrder(realProjectOrder);
